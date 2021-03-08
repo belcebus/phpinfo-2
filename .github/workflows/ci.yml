@@ -17,8 +17,8 @@ jobs:
         run: |
           docker build -t test .
           docker run -d --rm --name container-test test
-          while true
-            do \
-              sleep 10 \
-              docker exec container-test ps | grep 'php -f index.php' && break
-            done
+          while [ true ]
+          do \
+            sleep 10 \
+            docker exec container-test ps | grep 'php -f index.php' && break
+          done
