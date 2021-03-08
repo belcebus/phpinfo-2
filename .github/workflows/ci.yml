@@ -16,9 +16,9 @@ jobs:
       - name: test
         run: |
           docker build -t test .
-          docker run -d --rm --name test test
+          docker run -d --name testcontainer test
           while [ true ]
           do \
             sleep 10
-            docker exec test ps | grep 'php -f index.php' && break
+            docker exec testcontainer ps | grep 'php -f index.php' && break
           done
