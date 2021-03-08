@@ -15,6 +15,7 @@ jobs:
         
       - name: test
         run: |
+          set -x
           docker build -t test .
           docker run -d --name testcontainer test
           while [ true ]
