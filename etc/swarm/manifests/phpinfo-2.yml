@@ -1,0 +1,38 @@
+networks:
+  phpinfo-2:
+    internal: true
+services:
+  phpinfo-2:
+    deploy:
+      #varios contenedores en la misma maquina virtual
+      mode: replicated
+      #un unico contenedor por cada maquina virtual
+      #mode: global
+      placement:
+        constraints:
+        #docker desplegados en los nodos NO masters. k8s lo hace asi por defecto
+        - node.role == worker
+      replicas: 2
+      resources:
+        limits:
+          #100 milicores
+          cpus: "0.1"
+          memory: 100m
+        reservations:
+          cpus: "0.1"
+          memory: 100m
+    expose:
+    - 8080
+    healthcheck:
+      interval: 10s
+      retries: 3
+      start_period: 30s
+      #no tenemos curl por lo que usaremos este otro comando
+      test: php -r "print file_get_contents('http://localhost:8080/');"
+      timeout: 1s
+    image: belcebus/phpinfo-2:latest
+    networks:
+    - phpinfo-2
+    ports:
+    - 8080:8080
+version: "3.8"
