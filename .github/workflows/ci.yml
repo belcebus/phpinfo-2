@@ -2,8 +2,8 @@ name: CI Docker
 
 on:
   push:
-    branches:
-    - docker
+#    branches:
+#    - docker
 
 jobs:
   build-docker:
