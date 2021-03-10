@@ -77,5 +77,6 @@ spec:
     targetPort: 8080
   selector:
     app: phpinfo-2
+  #Para que tenga una IP interna al cluster
   type: ClusterIP
 ---
