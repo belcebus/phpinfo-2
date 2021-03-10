@@ -62,7 +62,8 @@ spec:
   - ports:
     - port: 8080
   podSelector: 
-    matchLabels: phpinfo-2
+    matchLabels: 
+      app: phpinfo-2
   policyTypes: 
   - Ingress
 ---
