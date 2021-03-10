@@ -5,6 +5,9 @@ services:
   phpinfo-2:
     deploy:
       mode: replicated
+      placement:
+        constraints:
+        - node.role == worker
       replicas: 2
       resources:
         limits:
@@ -14,12 +17,13 @@ services:
           cpus: "0.1"
           memory: 100m
     expose:
-    - 8080
+    - "8080"
     healthcheck:
-      interval: 10s
+      interval: 15s
       retries: 3
-      start_period: 30s
-      timeout: 1s
+      start_period: 10s
+      #test: wget -q --spider http://localhost:8080
+      timeout: 10s
     image: belcebus/phpinfo-2:latest
     networks:
     - phpinfo-2
