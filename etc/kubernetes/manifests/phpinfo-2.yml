@@ -26,14 +26,14 @@ spec:
           timeoutSeconds: 1
         ports:
         - containerPort: 8080
-        readynessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          failureThreshold: 3
-          periodSeconds: 10
-          successThreshold: 1
-          timeoutSeconds: 1
+#        readinessProbe:
+#          httpGet:
+#            path: /
+#            port: 8080
+#          failureThreshold: 3
+#          periodSeconds: 10
+#          successThreshold: 1
+#          timeoutSeconds: 1
         resources:
           limits:
             cpu: 100m
