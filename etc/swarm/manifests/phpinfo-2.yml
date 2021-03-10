@@ -7,8 +7,7 @@ services:
       mode: replicated
       placement:
         constraints:
-        #- node.role == leader
-        - node.role == manager
+        - node.role == worker
       replicas: 2
       resources:
         limits:
@@ -29,5 +28,5 @@ services:
     networks:
     - phpinfo-2
     ports:
-    - 30000:8080
+    - 8080:8080
 version: "3.8"
