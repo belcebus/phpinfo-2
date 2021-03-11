@@ -24,7 +24,7 @@ services:
       start_period: 10s
       #test: wget -q --spider http://localhost:8080
       timeout: 10s
-    image: belcebus/phpinfo-2:latest
+    image: belcebus/phpinfo-2:2.0
     networks:
     - phpinfo-2
     ports:

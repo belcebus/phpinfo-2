@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: phpinfo-2
-        image: belcebus/phpinfo-2:latest
+        image: belcebus/phpinfo-2:2.0
         imagePullPolicy: Always
         livenessProbe:
           tcpSocket:

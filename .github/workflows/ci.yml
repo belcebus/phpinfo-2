@@ -2,7 +2,7 @@ name: CI
 on: 
   push:
     branches: 
-    - docker
+    - v2.0
 jobs: 
   docker:
     runs-on: ubuntu-18.04
@@ -38,7 +38,7 @@ jobs:
         project=phpinfo-2
         compose=etc/swarm/manifests/${project}.yml
         #sustituyo latest x testing y despliego con compose
-        sed -i /image:/s/latest/testing/ ${compose}
+        sed -i /image:/s/2.0/testing/ ${compose}
         sed -i /node.role/s/worker/manager/ ${compose}
         #Despliegue en Openshift
         #oc apply -f ${compose}
@@ -102,7 +102,7 @@ jobs:
         project=phpinfo-2
         compose=etc/kubernetes/manifests/${project}.yml
         #sustituyo latest x testing y despliego con compose
-        sed -i /image:/s/latest/testing/ ${compose}
+        sed -i /image:/s/2.0/testing/ ${compose}
         sed -i /imagePullPolicy/s/Always/Never/ ${compose}
         #Despliegue en Openshift
         #oc apply -f ${compose}
