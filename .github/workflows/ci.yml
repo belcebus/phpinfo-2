@@ -122,6 +122,9 @@ jobs:
           while true 
             do \
               sleep 10
+              kubectl describe deploy
+              kubectl describe rs
+              kubectl describe po
               kubectl get deploy | grep "${project}.*\([0-9]\)/\1" && break
             done
           while true
