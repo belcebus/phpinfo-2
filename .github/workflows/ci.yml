@@ -6,14 +6,14 @@ on:
     - docker
 
 jobs:
-  build-docker:
+  docker:
     runs-on: ubuntu-latest
-    
     steps:
-      - uses: actions/checkout@v2
+      - 
+        uses: actions/checkout@v2
         name: Checkout!
-        
-      - name: test
+      - 
+        name: test
         run: |
           set -x
           docker build -t test .
@@ -28,3 +28,37 @@ jobs:
             sleep 10
             docker logs testcontainer 2>& 1 | grep 'PHP .* Development Server .* started' && break 
           done
+  
+  swarm:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Checking out!
+        uses: actions/checkout@v2
+      - 
+        name: test
+        run: |
+          set -x
+          docker build -t belcebus/phpinfo-2:testing . 
+          docker swarm init
+          PROJECT=phpinfo-2
+          COMPOSE=etc/swarm/manifests/${PROJECT}.yml
+          sed -i /image:/s/latest/testing/ ${COMPOSE}
+          sed -i /node.role/s/worker/manager/ ${COMPOSE}
+          #Despliegue en OS
+          #oc apply -f ${COMPOSE}
+          #Despliegue en k8s
+          #kubectl apply -f ${COMPOSE}
+          #Despleigue en Swarm
+          docker stack deploy -c ${COMPOSE} ${PROJECT}
+          while true
+            do \
+              sleep 10
+              #Un numero , barra, y el mismo numero es la expresion regular siguiente
+              docker service ls | grep "${PROJECT}.*\([0-9]\)/\1" && break
+            done
+          while true
+            do \
+              sleep 10
+              docker service logs ${PROJECT}_${PROJECT} 2>& 1 | grep 'PHP .* Development Server .* started' && break
+            done
