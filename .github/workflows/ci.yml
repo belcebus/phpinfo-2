@@ -36,7 +36,7 @@ jobs:
         docker build -t belcebus/phpinfo-2:testing .
         docker swarm init
         project=phpinfo-2
-        compose=etc/swarm/manifests/${project}.yaml
+        compose=etc/swarm/manifests/${project}.yml
         #sustituyo latest x testing y despliego con compose
         sed -i /image:/s/latest/testing/ ${compose}
         sed -i /node.role/s/worker/manager/ ${compose}
@@ -100,7 +100,7 @@ jobs:
         kubectl taint node ${master} node-role.kubernetes.io/master:NoSchedule-
         
         project=phpinfo-2
-        compose=etc/kubernetes/manifests/${project}.yaml
+        compose=etc/kubernetes/manifests/${project}.yml
         #sustituyo latest x testing y despliego con compose
         sed -i /image:/s/latest/testing/ ${compose}
         sed -i /imagePullPolicy/s/Always/Never/ ${compose}
