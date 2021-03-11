@@ -76,7 +76,7 @@ jobs:
           docker build -t belcebus/phpinfo-2:testing . 
           # instalar kubernetes en ubuntu
           sudo apt-get update
-          sudo apt-get install -y docker.io
+          #sudo apt-get install -y docker.io
           sudo systemctl enable --now docker
           curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
           echo deb http://apt.kubernetes.io/ kubernetes-xenial main | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
