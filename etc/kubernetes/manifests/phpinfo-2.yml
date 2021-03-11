@@ -37,10 +37,10 @@ spec:
         resources:
           limits:
             cpu: 100m
-            memory: 100M
+            memory: 100m
           requests:
             cpu: 100m
-            memory: 100M
+            memory: 100m
 ---
 #politica de cortafuegos. Con esta cerramos todo que por defecto esta todo abierto
 apiVersion: networking.k8s.io/v1
